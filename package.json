@@ -51,7 +51,7 @@
     "typescript": "^2.8.1",
     "uuid": "^3.2.1",
     "vue": "^2.5.2",
-    "vue-class-component": "^6.2.0",
+    "vue-property-decorator": "^7.2.0",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.16.0",
     "vuejs-datepicker": "^1.2.0",

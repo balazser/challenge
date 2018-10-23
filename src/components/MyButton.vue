@@ -1,9 +1,10 @@
 <script>
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
+
 import IconPaw from './../assets/paw.jpeg'
 
-@Component({})
+@Component
 export default class MyButton extends Vue {
   handleClick() {
     this.$emit('click')

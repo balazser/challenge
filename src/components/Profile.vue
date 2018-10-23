@@ -1,16 +1,13 @@
 <script>
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Prop } from 'vue-property-decorator'
 import MyButton from './MyButton.vue'
 import paw from './../assets/paw.jpeg'
 
-@Component({
-  props: {
-    id: String,
-    name: String,
-  },
-})
+@Component
 export default class Profile extends Vue {
+  @Prop(String) id
+  @Prop(String) name
   hasAdopted = false
 
   handleClick() {

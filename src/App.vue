@@ -1,13 +1,14 @@
 <script>
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component } from 'vue-property-decorator'
+
 import MyButton from './components/MyButton.vue'
 import { Mutation, State, Getter, Action } from './store'
 import * as store from './store'
 
 import Profile from './components/Profile.vue'
 
-@Component({})
+@Component
 export default class App extends Vue {
   @Getter(store.ALL_PETS) allPets
   @Action(store.FETCH_PETS) fetchPets
