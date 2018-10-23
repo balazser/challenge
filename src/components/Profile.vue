@@ -29,6 +29,7 @@ export default class Profile extends Vue {
           <strong>Has adopted: </strong> {this.hasAdopted ? 'yes' : 'no'}
         </p>
         <MyButton onClick={() => this.handleClick()} />
+        <b-button>I am a Button</b-button>
       </div>
     )
   }
