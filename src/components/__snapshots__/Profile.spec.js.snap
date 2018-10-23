@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile.vue should match with snapshot 1`] = `
+<div>
+  <img
+    src="./some_path.jpeg"
+    style="margin-bottom: 15px;"
+  />
+  <p>
+    <strong>
+      Name: 
+    </strong>
+     
+  </p>
+  <p>
+    <strong>
+      Has adopted: 
+    </strong>
+     no
+  </p>
+  <button
+    style="border: 1px solid black; padding: 5px 15px; border-radius: 10px;"
+  >
+    <img
+      src="./some_path.jpeg"
+      style="width: 30px; margin-right: 10px;"
+    />
+    <span>
+      Adopt
+    </span>
+  </button>
+</div>
+`;
