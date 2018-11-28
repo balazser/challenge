@@ -1,11 +1,21 @@
-import { PETS } from './state'
+import { INVENTORY } from './state'
 
-export const ADD_PETS = 'ADD_PETS'
-export const MARK_PET_ADOPTED = 'MARK_PET_ADOPTED'
+export const SET_INVENTORY = 'SET_INVENTORY'
+export const MARK_DEVICE_BOOKED = 'MARK_DEVICE_BOOKED'
+export const MARK_DEVICE_RETURNED = 'MARK_DEVICE_RETURNED'
 
 export default {
-  [ADD_PETS](state, pets) {
-    const petsUniq = pets.filter(p => !state[pets].some(p2 => p2.id === p.id))
-    state[PETS].push(...petsUniq)
+  [SET_INVENTORY](state, inventory) {
+    state[INVENTORY] = inventory
+  },
+  [MARK_DEVICE_BOOKED](state, { deviceName, bookedBy, bookedAt }) {
+    const device = state[INVENTORY].find(i => i.device.name === deviceName)
+    device.bookedBy = bookedBy
+    device.bookedAt = bookedAt
+  },
+  [MARK_DEVICE_RETURNED](state, { deviceName, bookedBy, bookedAt }) {
+    const device = state[INVENTORY].find(i => i.device.name === deviceName)
+    device.bookedBy = null
+    device.bookedAt = null
   },
 }

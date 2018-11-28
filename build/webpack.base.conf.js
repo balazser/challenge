@@ -37,7 +37,6 @@ module.exports = {
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'app-scss-settings': resolve('src/assets/sass/'),
     },
   },
   module: {
@@ -53,9 +52,9 @@ module.exports = {
               { removeDoctype: true },
               { removeComments: true },
               { cleanupIDs: true },
-            ]
-          }
-        }
+            ],
+          },
+        },
       },
       {
         test: /\.vue$/,

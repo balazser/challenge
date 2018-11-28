@@ -1,9 +1,9 @@
-import { PETS } from './state'
+import { INVENTORY } from './state'
 
-export const ALL_PETS = 'PET_LIST'
+export const ALL_INVENTORY = 'ALL_INVENTORY'
 
 export default {
-  [ALL_PETS](state) {
-    return state[PETS]
+  [ALL_INVENTORY](state) {
+    return state[INVENTORY]
   },
 }
