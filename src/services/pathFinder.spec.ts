@@ -15,7 +15,7 @@ describe('pathFinder', () => {
       path: ['start', 'A', 'D', 'finish'],
     }
 
-    expect(dijkstra(graph)).toEqual(result)
+    expect(dijkstra(graph, 'finish')).toEqual(result)
   })
   it('should find various cheapest path', () => {
     const graph: Graph = {
@@ -31,6 +31,6 @@ describe('pathFinder', () => {
       path: ['start', 'A', 'D', 'finish'],
     }
 
-    expect(dijkstra(graph)).toEqual(result)
+    expect(dijkstra(graph, 'finish')).toEqual(result)
   })
 })
