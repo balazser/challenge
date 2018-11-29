@@ -17,10 +17,10 @@ import { currencySign } from './services/currencySign';
 @Component
 export default class App extends Vue {
   currency = null
-  deals = []
+  deals = null
 
-  get areResultsShown() {
-    return this.deals.length > 0
+  get isResultShown() {
+    return this.deals && this.deals.length > 0
   }
 
   async handleSearching(e) {
@@ -29,6 +29,7 @@ export default class App extends Vue {
       : findFastestPath
     const response = await findPath(e.departure, e.arrival)
     this.currency = currencySign(response.currency)
+    debugger
     this.deals = response.deals
   }
 
@@ -45,12 +46,23 @@ export default class App extends Vue {
     </div>
   }
 
+  renderNoResults() {
+    return <b-container fluid>
+      <b-row class="my-1">
+        <b-col sm="12">
+          No direction was found. :(
+          </b-col >
+      </b-row>
+    </b-container>
+  }
+
   render() {
     return (
-      <div id="app" style="width: 30vw;">
+      <div id="app" style="width: 35vw;">
         <h2 class="my-4">Search direction</h2>
         <Form onSearching={this.handleSearching} />
-        {this.areResultsShown ? this.renderResult() : undefined}
+        {this.isResultShown ? this.renderResult() : undefined}
+        {this.deals && this.deals.length === 0 ? this.renderNoResults() : undefined}
       </div>
     )
   }

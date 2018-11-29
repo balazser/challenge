@@ -40,7 +40,7 @@ export default class ResultList extends Vue {
                       <h5 class="mb-1">{d.departure} > {d.arrival}</h5>
                       <span>{this.renderInfo(d)}</span>
                     </div>
-                    <span>
+                    <span class="text-right">
                       <span style="font-size: 1.25em" class="old-price">{d.cost} {this.currency}</span>
                       {hasDiscount(d) ? this.renderDiscount(d) : undefined}
                     </span>
