@@ -1,4 +1,4 @@
-const findLowestCostNode = (costs, processed) => {
+const findLowestCostNode = (costs: Graph, processed: string[]) => {
   const knownNodes = Object.keys(costs)
 
   const lowestCostNode = knownNodes.reduce(
