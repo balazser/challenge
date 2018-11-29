@@ -65,7 +65,7 @@ export const dijkstra = (graph, finish: any) => {
 
   const results = {
     distance: trackedCosts[finish],
-    path: optimalPath.slice(1),
+    path: optimalPath,
   }
 
   return results

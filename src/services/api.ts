@@ -58,7 +58,15 @@ export const findBestDeals = (
     to
   )
 
-  const lines = fp.zip(result.path, result.path.slice(1)).slice(0, -1)
+  const addStart = fp.compose(
+    fp.concat([from]),
+    (arr: ReadonlyArray<any>) => arr.slice(1)
+  )
+
+  const lines = fp
+    .zip(addStart(result.path), addStart(result.path).slice(1))
+    .slice(0, -1)
+
   return lines.map<Deal>(
     l => deals.find(r => r.departure === l[0] && r.arrival === l[1]) as Deal
   )
