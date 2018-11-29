@@ -31,20 +31,22 @@ export default class ResultList extends Vue {
           <b-list-group-item href="#" class="flex-column align-items-start">
             <b-container fluid class="px-0">
               <b-row class="my-1">
-                <b-col sm="3">
-                  <img src="http://www.loremimages.com?size=80x80" alt="city preview" style="float: left" />
+                <b-col cols="12" md="3">
+                  <img src="http://www.loremimages.com?size=120x120" alt="city preview" style="float: left" class="w-100 px-md-1" />
                 </b-col>
-                <b-col sm="9" class="pl-0">
-                  <div class={["d-flex w-100 justify-content-between", { discount: d.discount > 0 }]}>
-                    <div>
+                <b-col cols="12" md="9">
+                  <b-row class={{ discount: d.discount > 0 }}>
+                    <b-col cols="12" md="7" class="pl-md-0 mt-2 mt-md-0">
                       <h5 class="mb-1">{d.departure} > {d.arrival}</h5>
                       <span>{this.renderInfo(d)}</span>
-                    </div>
-                    <span class="text-right">
-                      <span style="font-size: 1.25em" class="old-price">{d.cost} {this.currency}</span>
-                      {hasDiscount(d) ? this.renderDiscount(d) : undefined}
-                    </span>
-                  </div>
+                    </b-col>
+                    <b-col cols="12" md="5" class="text-left text-md-right">
+                      <span>
+                        <span style="font-size: 1.25em" class="old-price">{d.cost} {this.currency}</span>
+                        {hasDiscount(d) ? this.renderDiscount(d) : undefined}
+                      </span>
+                    </b-col>
+                  </b-row>
                 </b-col>
               </b-row>
             </b-container>

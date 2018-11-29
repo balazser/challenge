@@ -59,11 +59,17 @@ export default class App extends Vue {
 
   render() {
     return (
-      <div id="app" style="width: 35vw;">
-        <h2 class="my-4 pl-3">Search direction</h2>
-        <Form onSearching={this.handleSearching} />
-        {this.isResultShown ? this.renderResult() : undefined}
-        {this.deals && this.deals.length === 0 ? this.renderNoResults() : undefined}
+      <div id="app" >
+        <b-container fluid>
+          <b-row class="my-1">
+            <b-col lg="4">
+              <h2 class="my-4 pl-3">Search direction</h2>
+              <Form onSearching={this.handleSearching} />
+              {this.isResultShown ? this.renderResult() : undefined}
+              {this.deals && this.deals.length === 0 ? this.renderNoResults() : undefined}
+            </b-col >
+          </b-row>
+        </b-container>
       </div>
     )
   }
