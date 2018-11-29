@@ -1,5 +1,1 @@
-export const INVENTORY = 'INVENTORY'
-
-export default {
-  [INVENTORY]: [],
-}
+export default {}

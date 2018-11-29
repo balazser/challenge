@@ -1,49 +1,64 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import { DateTime } from 'luxon'
 
-import MyButton from './components/MyButton.vue'
 import { Mutation, State, Getter, Action } from './store'
 import * as store from './store'
 
-import Profile from './components/Profile.vue'
-
 @Component
 export default class App extends Vue {
-  @Getter(store.ALL_PETS) allPets
-  @Action(store.FETCH_PETS) fetchPets
-  @Action(store.ADOPT_PET) adoptPet
-
+  from = ""
+  to = ""
+  activeButton = "cheapest"
   mounted() {
-    this.fetchPets()
   }
 
-  async handleAdopting(id) {
-    await Promise.resolve()
+  handleFormSubmited(e) {
+    console.log(e)
+    return false
+  }
+
+  get isBtnCheapestActive() {
+    return this.activeButton === "cheapest"
+  }
+
+  get isSearchDisabled() {
+    return this.from === "" || this.to === ""
   }
 
   render() {
     return (
-      <div id="app" style="padding: 5vw">
-        <h1>Adopt a dog today! </h1>
-        <div style="display: flex;">
-          {this.allPets.map(p => {
-            return (
-              <Profile
-                id={p.id}
-                name={p.name}
-                style="margin-right: 25px"
-                onAdopted={id => this.handleAdopting(id)}
-              />
-            )
-          })}
-        </div>
+      <div id="app" style="width: 30vw;">
+        <h2 class="my-4">Search direction</h2>
+        <b-form submit={this.handleFormSubmited} >
+          <b-container fluid>
+            <b-row class="my-1">
+              <b-col sm="3"><label for="departure">Departure:</label></b-col>
+              <b-col sm="9"><b-form-input id="deprature" type="text" onInput={e => this.to = e}></b-form-input></b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3"><label for="departure">Arrival:</label></b-col>
+              <b-col sm="9"><b-form-input id="deprature" type="text" onInput={e => this.from = e}></b-form-input></b-col>
+            </b-row>
+            <b-row class="my-4">
+              <b-col>
+                <b-button-group sm="5">
+                  <b-button class={{ active: this.isBtnCheapestActive }} onClick={() => this.activeButton = "cheapest"}>Cheapest</b-button>
+                  <b-button class={{ active: !this.isBtnCheapestActive }} onClick={() => this.activeButton = "fastest"}>Fastest</b-button>
+                </b-button-group>
+              </b-col>
+              <b-col offset-sm="4" sm="3">
+                <b-button type="submit" variant="success" disabled={this.isSearchDisabled} class="w-100">Search</b-button>
+              </b-col>
+            </b-row>
+          </b-container>
+        </b-form>
       </div>
     )
   }
 }
 </script>
 
-<style lang="scss">
-@import './assets/sass/index.scss';
+<style lang="scss" >
 </style>
