@@ -25,7 +25,6 @@ export default class App extends Vue {
     const findPath = e.searchType === SearchType.Cheapest
       ? findCheapestPath
       : findFastestPath
-    debugger
     const response = await findPath(e.departure, e.arrival)
     this.currency = response.currency
     this.deals = response.deals

@@ -2,11 +2,8 @@ import { Duration as Dur } from 'luxon'
 import * as fp from 'lodash/fp'
 import { Graph, dijkstra } from './pathFinder'
 import { Deal, PathsResponse } from './dtos/PathsResponse'
+import { applyDiscount } from './deal'
 const response = require('./response')
-
-const applyDiscount = (discount: number, price: number) => {
-  return price - price * (discount / 100)
-}
 
 const getDuration = (d: Deal) =>
   Dur.fromObject({
