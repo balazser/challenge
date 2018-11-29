@@ -1,0 +1,22 @@
+{
+  "name": "ramda-vs-others",
+  "version": "1.0.0",
+  "description": "Comparing.",
+  "main": "index.js",
+  "author": "Balazs Erdos",
+  "license": "MIT",
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "lodash": "^4.17.11",
+    "luxon": "^1.7.1",
+    "ramda": "^0.26.0"
+  },
+  "devDependencies": {
+    "@types/benchmark": "^1.0.31",
+    "@types/chalk": "^2.2.0",
+    "@types/lodash": "^4.14.118",
+    "@types/luxon": "^1.4.1",
+    "@types/ramda": "^0.25.41",
+    "chalk": "^2.4.1"
+  }
+}
