@@ -35,7 +35,7 @@ function listen(suite) {
     .on('error', function(event) {
       const errors = fp.find(
         fp.complement(fp.isNil),
-        fp.map(fp.prop('error'), event.currentTarget),
+        fp.map(fp.prop('error'), event.currentTarget)
       )
       throw new Error(errors)
     })
@@ -103,7 +103,7 @@ suiteComplex
   .add('Ramda without reliance on currying', function() {
     var result = R.filter(
       lessThanThreeDigits,
-      R.map(square, R.filter(isOdd, R.pluck('counter', data))),
+      R.map(square, R.filter(isOdd, R.pluck('counter', data)))
     )
   })
   .add('Ramda with currying and composition', function() {
@@ -111,13 +111,13 @@ suiteComplex
       R.pluck('counter'),
       R.filter(isOdd),
       R.map(square),
-      R.filter(lessThanThreeDigits),
+      R.filter(lessThanThreeDigits)
     )(data)
   })
   .add('Ramda without reliance on currying', function() {
     var result = R.filter(
       lessThanThreeDigits,
-      R.map(square, R.filter(isOdd, data.map(d => d.property))),
+      R.map(square, R.filter(isOdd, data.map(d => d.property)))
     )
   })
   .add('Lodash chain', function() {
@@ -131,19 +131,19 @@ suiteComplex
   .add('Lodash', function() {
     var result = _.filter(
       _.map(_.filter(_.map(data, _.property('counter')), isOdd), square),
-      lessThanThreeDigits,
+      lessThanThreeDigits
     )
   })
   .add('Lodash FP', function() {
     var result = fp.filter(
       lessThanThreeDigits,
-      fp.map(square, fp.filter(isOdd, fp.map(fp.prop('counter'), data))),
+      fp.map(square, fp.filter(isOdd, fp.map(fp.prop('counter'), data)))
     )
   })
 
 const timeInput = R.times(
   () => ({ start_time: '2018-11-19T20:20:49.502Z' }),
-  1e2,
+  1e2
 )
 
 var startOfDay
@@ -155,7 +155,7 @@ suiteComparingTime
     timeInput.filter(
       t =>
         DateTime.fromISO(t.start_time).startOf('day') <
-        DateTime.local().startOf('day'),
+        DateTime.local().startOf('day')
     )
   })
   .add('Ramda FP', function() {
@@ -166,9 +166,9 @@ suiteComparingTime
         R.compose(
           comparefn(R.__, startOfDay(DateTime.local())),
           startOfDay,
-          R.prop('start_time'),
+          R.prop('start_time')
         ),
-        timeInput,
+        timeInput
       )
     }
     getTactsRelativeToToday(R.lt)
@@ -181,9 +181,9 @@ suiteComparingTime
         fp.compose(
           comparefn(fp.__, startOfDay(DateTime.local())),
           startOfDay,
-          fp.prop('start_time'),
+          fp.prop('start_time')
         ),
-        timeInput,
+        timeInput
       )
     }
     getTactsRelativeToToday(fp.lt)
@@ -217,7 +217,7 @@ suiteAdd5
       addOne,
       addOne,
       addOne,
-      addOne,
+      addOne
     )
     add5(1)
   })
@@ -227,7 +227,7 @@ suiteAdd5
       addOne,
       addOne,
       addOne,
-      addOne,
+      addOne
     )
     add5(1)
   })
@@ -237,7 +237,7 @@ suiteAdd5
       addOne,
       addOne,
       addOne,
-      addOne,
+      addOne
     )
     add5(1)
   })
@@ -247,15 +247,15 @@ suiteAdd5
       addOne,
       addOne,
       addOne,
-      addOne,
+      addOne
     )
     add5(1)
   })
 
 // run benchmarks
-// listen(suiteForEach).run()
-// listen(suiteProp).run()
-// listen(suiteComplex).run()
-// listen(suiteComparingTime).run()
-// listen(suiteSquaring).run()
+listen(suiteForEach).run()
+listen(suiteProp).run()
+listen(suiteComplex).run()
+listen(suiteComparingTime).run()
+listen(suiteSquaring).run()
 listen(suiteAdd5).run()

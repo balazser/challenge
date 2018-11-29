@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Balazs Erdos",
   "license": "MIT",
+  "scripts": {
+    "test": "node ./index.js"
+  },
   "dependencies": {
     "benchmark": "^2.1.4",
     "lodash": "^4.17.11",
