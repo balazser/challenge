@@ -110,13 +110,13 @@ export default class Form extends Vue {
             </b-col>
           </b-row>
           <b-row class="my-4">
-            <b-col>
-              <b-button-group sm="5">
+            <b-col offset-sm="3" sm="1">
+              <b-button-group>
                 <b-button class={{ active: this.isBtnCheapestActive }} onClick={() => this.searchType = SearchType.Cheapest}>Cheapest</b-button>
                 <b-button class={{ active: !this.isBtnCheapestActive }} onClick={() => this.searchType = SearchType.Fastest}>Fastest</b-button>
               </b-button-group>
             </b-col>
-            <b-col offset-sm="4" sm="3">
+            <b-col offset-sm="5" sm="3">
               <b-button type="submit" variant="success" disabled={this.isSearchDisabled} class="w-100">Search</b-button>
             </b-col>
           </b-row>

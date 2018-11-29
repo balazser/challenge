@@ -29,12 +29,12 @@ export default class ResultList extends Vue {
       <b-list-group>
         {this.deals.map(d =>
           <b-list-group-item href="#" class="flex-column align-items-start">
-            <b-container fluid>
+            <b-container fluid class="px-0">
               <b-row class="my-1">
-                <b-col sm="2">
+                <b-col sm="3">
                   <img src="http://www.loremimages.com?size=80x80" alt="city preview" style="float: left" />
                 </b-col>
-                <b-col sm="10">
+                <b-col sm="9" class="pl-0">
                   <div class={["d-flex w-100 justify-content-between", { discount: d.discount > 0 }]}>
                     <div>
                       <h5 class="mb-1">{d.departure} > {d.arrival}</h5>

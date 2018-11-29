@@ -33,16 +33,18 @@ export default class App extends Vue {
   }
 
   renderResult() {
-    return <div>
-      <ResultList deals={this.deals} currency={this.currency} />
-      <b-container fluid>
-        <b-row class="my-1">
-          <b-col sm="12">
-            <div style="font-size:2em" class="text-right font-weight-bold">Sum: {sumBy((d) => applyDiscount(d.discount, d.cost), this.deals)} {this.currency}</div>
-          </b-col >
-        </b-row>
-      </b-container>
-    </div>
+    return <b-container fluid>
+      <b-row class="my-1">
+        <b-col sm="12">
+          <ResultList deals={this.deals} currency={this.currency} />
+        </b-col>
+      </b-row>
+      <b-row class="my-1">
+        <b-col sm="12">
+          <div style="font-size:2em" class="text-right font-weight-bold">Sum: {sumBy((d) => applyDiscount(d.discount, d.cost), this.deals)} {this.currency}</div>
+        </b-col >
+      </b-row>
+    </b-container>
   }
 
   renderNoResults() {
@@ -58,7 +60,7 @@ export default class App extends Vue {
   render() {
     return (
       <div id="app" style="width: 35vw;">
-        <h2 class="my-4">Search direction</h2>
+        <h2 class="my-4 pl-3">Search direction</h2>
         <Form onSearching={this.handleSearching} />
         {this.isResultShown ? this.renderResult() : undefined}
         {this.deals && this.deals.length === 0 ? this.renderNoResults() : undefined}
