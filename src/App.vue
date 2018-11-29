@@ -8,46 +8,27 @@ import Results from './components/Results.vue';
 import { Mutation, State, Getter, Action } from './store'
 import * as store from './store'
 
+import { findCheapestPath, findFastestPath } from './services/api';
+import { SearchType } from './components/SearchType';
+
+
 @Component
 export default class App extends Vue {
-  deals = [
-    {
-      "transport": "train",
-      "departure": "London",
-      "arrival": "Amsterdam",
-      "duration": { "h": "05", "m": "00" },
-      "cost": 160,
-      "discount": 0,
-      "reference": "TLA0500"
-    },
-    {
-      "transport": "bus",
-      "departure": "London",
-      "arrival": "Amsterdam",
-      "duration": { "h": "07", "m": "45" },
-      "cost": 40,
-      "discount": 25,
-      "reference": "BLA0745"
-    },
-    {
-      "transport": "car",
-      "departure": "London",
-      "arrival": "Amsterdam",
-      "duration": { "h": "04", "m": "45" },
-      "cost": 120,
-      "discount": 0,
-      "reference": "CLA0445"
-    }]
-
-
+  currency = null
+  deals = []
 
   get areResultsShown() {
     return this.deals.length > 0
   }
 
-  handleSearching(e) {
-    console.log(e)
+  async handleSearching(e) {
+    const findPath = e.searchType === SearchType.Cheapest
+      ? findCheapestPath
+      : findFastestPath
     debugger
+    const response = await findPath(e.departure, e.arrival)
+    this.currency = response.currency
+    this.deals = response.deals
   }
 
   render() {
@@ -55,7 +36,7 @@ export default class App extends Vue {
       <div id="app" style="width: 30vw;">
         <h2 class="my-4">Search direction</h2>
         <Form onSearching={this.handleSearching} />
-        {this.areResultsShown ? <Results deals={this.deals} currency={"€"} /> : undefined}
+        {this.areResultsShown ? <Results deals={this.deals} currency={this.currency} /> : undefined}
       </div>
     )
   }

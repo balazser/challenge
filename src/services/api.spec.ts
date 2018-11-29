@@ -1,4 +1,4 @@
-import { findCheapestPath, buildGraph, findFastestPath } from './api'
+import { findCheapestPath, findFastestPath } from './api'
 
 describe('pathFinder', () => {
   it('should find cheapest path', async() => {

@@ -37,11 +37,11 @@ export default class Form extends Vue {
         <b-container fluid>
           <b-row class="my-1">
             <b-col sm="3"><label for="departure">Departure:</label></b-col>
-            <b-col sm="9"><b-form-input id="deprature" type="text" onInput={e => this.arrival = e}></b-form-input></b-col>
+            <b-col sm="9"><b-form-input id="deprature" type="text" onInput={e => this.departure = e}></b-form-input></b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="3"><label for="departure">Arrival:</label></b-col>
-            <b-col sm="9"><b-form-input id="deprature" type="text" onInput={e => this.departure = e}></b-form-input></b-col>
+            <b-col sm="9"><b-form-input id="arrival" type="text" onInput={e => this.arrival = e}></b-form-input></b-col>
           </b-row>
           <b-row class="my-4">
             <b-col>

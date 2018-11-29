@@ -15,9 +15,7 @@ const getDuration = (d: Deal) =>
   })
 
 const groupByDeparture = fp.groupBy<Deal>('departure')
-
 const findFastestDeal = fp.minBy(getDuration)
-// const findCheapestDeal = fp.minBy(fp.prop('cost'))
 
 const findCheapestDeal = fp.minBy<Deal>(d =>
   applyDiscount(fp.propOr(0, 'discount', d), d.cost)
@@ -44,7 +42,7 @@ const reduceDeals = (
   return fp.flatten(reducedGroups)
 }
 
-export const findBestDeals = (
+const findBestDeals = (
   from: string,
   to: string,
   deals: ReadonlyArray<Deal>
@@ -98,7 +96,7 @@ export const findFastestPath = (from: string, to: string): Promise<any> => {
   })
 }
 
-export const buildGraph = (v: ReadonlyArray<Deal>) => {
+const buildGraph = (v: ReadonlyArray<Deal>) => {
   const mapped = Object.entries(groupByDeparture(v)).map(([k, v]) => {
     return {
       [k]: fp.mergeAll(
