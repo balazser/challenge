@@ -7,9 +7,10 @@
       "json",
       "vue"
     ],
-    "moduleNameMapper": {
-      "\\.(jpeg)$": "<rootDir>/__mocks__/imageMock.js"
-    },
+    "testMatch": [
+      "**/?(*.)+(spec|test).*"
+    ],
+    "moduleNameMapper": {},
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/.history/"
@@ -42,6 +43,7 @@
     "classnames": "^2.2.5",
     "debug": "^3.1.0",
     "devour-client": "^2.0.8",
+    "lodash": "^4.17.11",
     "luxon": "^1.3.0",
     "moment": "^2.22.0",
     "normalizr": "^3.2.4",
@@ -62,11 +64,10 @@
     "@types/chai": "^4.1.3",
     "@types/classnames": "^2.2.3",
     "@types/debug": "^0.0.30",
+    "@types/jest": "^23.3.10",
+    "@types/lodash": "^4.14.118",
     "@types/luxon": "^0.5.3",
-    "@types/mocha": "^5.2.1",
     "@types/pusher-js": "^4.2.0",
-    "@types/three": "^0.92.4",
-    "@types/uuid": "^3.4.3",
     "@vue/test-utils": "^1.0.0-beta.24",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
