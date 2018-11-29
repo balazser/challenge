@@ -29,7 +29,6 @@ export default class App extends Vue {
       : findFastestPath
     const response = await findPath(e.departure, e.arrival)
     this.currency = currencySign(response.currency)
-    debugger
     this.deals = response.deals
   }
 
