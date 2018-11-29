@@ -9,7 +9,7 @@ import * as store from './../store'
 import { applyDiscount, hasDiscount } from '../services/deal';
 
 @Component
-export default class Form extends Vue {
+export default class ResultList extends Vue {
   @Prop({ required: true, type: String }) currency
   @Prop(Array) deals
 
