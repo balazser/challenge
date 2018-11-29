@@ -21,32 +21,22 @@ export type Graph = { [key: string]: { [key: string]: number } }
 
 // function that returns the minimum cost and path to reach Finish
 export const dijkstra = (graph, finish: any) => {
-  console.log('Graph: ')
-  console.log(graph)
-
   // track lowest cost to reach each node
   const trackedCosts: Graph = Object.assign({ [finish]: Infinity }, graph.start)
-  console.log('Initial `costs`: ')
-  console.log(trackedCosts)
 
   // track paths
   const trackedParents = { [finish]: null }
   for (let child in graph.start) {
     trackedParents[child] = 'start'
   }
-  console.log('Initial `parents`: ')
-  console.log(trackedParents)
 
   // track nodes that have already been processed
   const processedNodes: string[] = []
 
   // Set initial node. Pick lowest cost node.
   let node = findLowestCostNode(trackedCosts, processedNodes)
-  console.log('Initial `node`: ', node)
 
-  console.log('while loop starts: ')
   while (node) {
-    console.log(`***** 'currentNode': ${node} *****`)
     let costToReachNode = trackedCosts[node]
     let childrenOfNode = graph[node]
 
@@ -58,17 +48,12 @@ export const dijkstra = (graph, finish: any) => {
         trackedCosts[child] = costToChild
         trackedParents[child] = node
       }
-
-      console.log('`trackedCosts`', trackedCosts)
-      console.log('`trackedParents`', trackedParents)
-      console.log('----------------')
     }
 
     processedNodes.push(node)
 
     node = findLowestCostNode(trackedCosts, processedNodes)
   }
-  console.log('while loop ends: ')
 
   let optimalPath = [finish]
   let parent = trackedParents[finish]
