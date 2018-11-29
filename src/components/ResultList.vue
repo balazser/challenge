@@ -36,11 +36,15 @@ export default class ResultList extends Vue {
                 </b-col>
                 <b-col sm="10">
                   <div class={["d-flex w-100 justify-content-between", { discount: d.discount > 0 }]}>
-                    <h5 class="mb-1">{d.departure} > {d.arrival}</h5>
-                    <span style="font-size: 1.25em" class="old-price">{d.cost} {this.currency}</span>
-                    {hasDiscount(d) ? this.renderDiscount(d) : undefined}
+                    <div>
+                      <h5 class="mb-1">{d.departure} > {d.arrival}</h5>
+                      <span>{this.renderInfo(d)}</span>
+                    </div>
+                    <span>
+                      <span style="font-size: 1.25em" class="old-price">{d.cost} {this.currency}</span>
+                      {hasDiscount(d) ? this.renderDiscount(d) : undefined}
+                    </span>
                   </div>
-                  <span>{this.renderInfo(d)}</span>
                 </b-col>
               </b-row>
             </b-container>
