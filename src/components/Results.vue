@@ -10,23 +10,6 @@ import * as store from './../store'
 export default class Form extends Vue {
   @Prop({ required: true, type: String }) currency
   @Prop(Array) deals
-  mounted() { }
-
-  handleFormSubmited(e) {
-    this.$emit("searching", {
-      departure: this.departure,
-      arrival: this.arrival
-    })
-    e.preventDefault();
-  }
-
-  get isBtnCheapestActive() {
-    return this.activeButton === "cheapest"
-  }
-
-  get isSearchDisabled() {
-    return this.departure === "" || this.arrival === ""
-  }
 
   renderInfo(d) {
     return <small>{d.transport} {d.reference} for {d.duration.h}h {d.duration.h} </small>

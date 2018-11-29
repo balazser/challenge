@@ -6,24 +6,25 @@ import { DateTime } from 'luxon'
 import { Mutation, State, Getter, Action } from './../store'
 import * as store from './../store'
 
+import { SearchType } from './SearchType';
+
 @Component
 export default class Form extends Vue {
   departure = ""
   arrival = ""
-  activeButton = "cheapest"
-  mounted() {
-  }
+  searchType = SearchType.Cheapest
 
   handleFormSubmited(e) {
     this.$emit("searching", {
       departure: this.departure,
-      arrival: this.arrival
+      arrival: this.arrival,
+      searchType: this.searchType
     })
     e.preventDefault();
   }
 
   get isBtnCheapestActive() {
-    return this.activeButton === "cheapest"
+    return this.searchType === SearchType.Cheapest
   }
 
   get isSearchDisabled() {
@@ -45,8 +46,8 @@ export default class Form extends Vue {
           <b-row class="my-4">
             <b-col>
               <b-button-group sm="5">
-                <b-button class={{ active: this.isBtnCheapestActive }} onClick={() => this.activeButton = "cheapest"}>Cheapest</b-button>
-                <b-button class={{ active: !this.isBtnCheapestActive }} onClick={() => this.activeButton = "fastest"}>Fastest</b-button>
+                <b-button class={{ active: this.isBtnCheapestActive }} onClick={() => this.searchType = SearchType.Cheapest}>Cheapest</b-button>
+                <b-button class={{ active: !this.isBtnCheapestActive }} onClick={() => this.searchType = SearchType.Fastest}>Fastest</b-button>
               </b-button-group>
             </b-col>
             <b-col offset-sm="4" sm="3">
