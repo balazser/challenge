@@ -7,12 +7,21 @@ import { Mutation, State, Getter, Action } from './../store'
 import * as store from './../store'
 
 import { SearchType } from './SearchType';
+import cities from '../constants/cities';
 
 @Component
 export default class Form extends Vue {
   departure = ""
   arrival = ""
   searchType = SearchType.Cheapest
+
+  mounted() {
+    document.addEventListener('click', this.resetAutocomplete)
+  }
+
+  beforeDestroy() {
+    document.removeEventListener('click', this.resetAutocomplete)
+  }
 
   handleFormSubmited(e) {
     this.$emit("searching", {
@@ -31,17 +40,74 @@ export default class Form extends Vue {
     return this.departure === "" || this.arrival === ""
   }
 
+  isDeparturesOpened = false
+  isArrivalOpened = false
+
+  resetAutocomplete() {
+    this.isDeparturesOpened = false
+    this.isArrivalOpened = false
+  }
+
+  handleDepartureClicked(value) {
+    this.isDeparturesOpened = false
+    this.departure = value
+  }
+  handleArrivalClicked(value) {
+    this.isArrivalOpened = false
+    this.arrival = value
+  }
+
+  renderCitiesAutocomplete(isOpened, value, onClicked) {
+    return <div style="position: relative; z-index: 2;" class={{ "d-none": !isOpened }}>
+      <div style="position: absolute; left: 0; right: 0;" >
+        <b-list-group>
+          {cities
+            .filter(c => c.match(new RegExp(value, "i")))
+            .map(c => <b-list-group-item href="#" onClick={() => onClicked(c)}>{c}</b-list-group-item>)}
+        </b-list-group>
+      </div>
+    </div>
+  }
+
   render() {
     return (
       <b-form onSubmit={this.handleFormSubmited} >
         <b-container fluid>
           <b-row class="my-1">
             <b-col sm="3"><label for="departure">Departure:</label></b-col>
-            <b-col sm="9"><b-form-input id="deprature" type="text" onInput={e => this.departure = e}></b-form-input></b-col>
+            <b-col sm="9">
+              <b-form-input
+                id="deprature"
+                type="text"
+                autocomplete="off"
+                value={this.departure}
+                nativeOnClick={(e) => { e.stopPropagation(); this.isDeparturesOpened = true }}
+                onInput={e => this.departure = e}
+              ></b-form-input>
+              <div style="position: relative; z-index: 2;" class={{ "d-none": !this.isDeparturesOpened }}>
+                <div style="position: absolute; left: 0; right: 0;" >
+                  <b-list-group>
+                    {cities
+                      .filter(c => c.match(new RegExp(this.departure, "i")))
+                      .map(c => <b-list-group-item href="#" onClick={() => this.handleDepartureClicked(c)}>{c}</b-list-group-item>)}
+                  </b-list-group>
+                </div>
+              </div>
+            </b-col>
           </b-row>
           <b-row class="my-1">
             <b-col sm="3"><label for="departure">Arrival:</label></b-col>
-            <b-col sm="9"><b-form-input id="arrival" type="text" onInput={e => this.arrival = e}></b-form-input></b-col>
+            <b-col sm="9">
+              <b-form-input
+                id="arrival"
+                type="text"
+                autocomplete="off"
+                value={this.arrival}
+                nativeOnClick={(e) => { e.stopPropagation(); this.isArrivalOpened = true }}
+                onInput={e => this.arrival = e}
+              ></b-form-input>
+              {this.renderCitiesAutocomplete(this.isArrivalOpened, this.arrival, this.handleArrivalClicked)}
+            </b-col>
           </b-row>
           <b-row class="my-4">
             <b-col>

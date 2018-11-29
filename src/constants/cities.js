@@ -1,0 +1,18 @@
+export default [
+  'Amsterdam',
+  'Athens',
+  'Brussels',
+  'Budapest',
+  'Geneva',
+  'Istanbul',
+  'Kiev',
+  'Lisbon',
+  'London',
+  'Madrid',
+  'Moscow',
+  'Paris',
+  'Prague',
+  'Rome',
+  'Stockholm',
+  'Warsaw',
+]

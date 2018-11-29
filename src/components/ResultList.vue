@@ -14,7 +14,7 @@ export default class ResultList extends Vue {
   @Prop(Array) deals
 
   renderInfo(deal) {
-    return <small>{deal.transport} {deal.reference} for {deal.duration.h}h {deal.duration.h} </small>
+    return <small>{deal.transport} {deal.reference} for {deal.duration.h}h {deal.duration.m} </small>
   }
 
   renderDiscount(deal) {
