@@ -9,35 +9,7 @@ import * as store from './../store'
 @Component
 export default class Form extends Vue {
   @Prop({ required: true, type: String }) currency
-  deals = [
-    {
-      "transport": "train",
-      "departure": "London",
-      "arrival": "Amsterdam",
-      "duration": { "h": "05", "m": "00" },
-      "cost": 160,
-      "discount": 0,
-      "reference": "TLA0500"
-    },
-    {
-      "transport": "bus",
-      "departure": "London",
-      "arrival": "Amsterdam",
-      "duration": { "h": "07", "m": "45" },
-      "cost": 40,
-      "discount": 25,
-      "reference": "BLA0745"
-    },
-    {
-      "transport": "car",
-      "departure": "London",
-      "arrival": "Amsterdam",
-      "duration": { "h": "04", "m": "45" },
-      "cost": 120,
-      "discount": 0,
-      "reference": "CLA0445"
-    }
-  ]
+  @Prop(Array) deals
   mounted() { }
 
   handleFormSubmited(e) {
@@ -65,12 +37,20 @@ export default class Form extends Vue {
       <b-list-group>
         {this.deals.map(d =>
           <b-list-group-item href="#" class="flex-column align-items-start">
-            <img src="http://www.loremimages.com?size=100x100" alt="city preview" style="float: left" />
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{d.departure} > {d.arrival}</h5>
-              <span style="font-size: 1.5em">{d.cost} {this.currency}</span>
-            </div>
-            <span>{this.renderInfo(d)}</span>
+            <b-container fluid>
+              <b-row class="my-1">
+                <b-col sm="2">
+                  <img src="http://www.loremimages.com?size=80x80" alt="city preview" style="float: left" />
+                </b-col>
+                <b-col sm="10">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{d.departure} > {d.arrival}</h5>
+                    <span style="font-size: 1.5em">{d.cost} {this.currency}</span>
+                  </div>
+                  <span>{this.renderInfo(d)}</span>
+                </b-col>
+              </b-row>
+            </b-container>
           </b-list-group-item>
         )}
       </b-list-group>

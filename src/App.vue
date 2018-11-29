@@ -10,12 +10,39 @@ import * as store from './store'
 
 @Component
 export default class App extends Vue {
-  path = []
-  mounted() { }
+  deals = [
+    {
+      "transport": "train",
+      "departure": "London",
+      "arrival": "Amsterdam",
+      "duration": { "h": "05", "m": "00" },
+      "cost": 160,
+      "discount": 0,
+      "reference": "TLA0500"
+    },
+    {
+      "transport": "bus",
+      "departure": "London",
+      "arrival": "Amsterdam",
+      "duration": { "h": "07", "m": "45" },
+      "cost": 40,
+      "discount": 25,
+      "reference": "BLA0745"
+    },
+    {
+      "transport": "car",
+      "departure": "London",
+      "arrival": "Amsterdam",
+      "duration": { "h": "04", "m": "45" },
+      "cost": 120,
+      "discount": 0,
+      "reference": "CLA0445"
+    }]
+
+
 
   get areResultsShown() {
-    return true
-    return this.path.length > 0
+    return this.deals.length > 0
   }
 
   handleSearching(e) {
@@ -28,7 +55,7 @@ export default class App extends Vue {
       <div id="app" style="width: 30vw;">
         <h2 class="my-4">Search direction</h2>
         <Form onSearching={this.handleSearching} />
-        {this.areResultsShown ? <Results currency={"€"} /> : undefined}
+        {this.areResultsShown ? <Results deals={this.deals} currency={"€"} /> : undefined}
       </div>
     )
   }
