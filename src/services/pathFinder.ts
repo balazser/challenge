@@ -20,12 +20,12 @@ const findLowestCostNode = (costs: Graph, processed: string[]) => {
 export type Graph = { [key: string]: { [key: string]: number } }
 
 // function that returns the minimum cost and path to reach Finish
-export const dijkstra = (graph, finish: any) => {
+export const dijkstra = (graph, finish: string) => {
   // track lowest cost to reach each node
   const trackedCosts: Graph = Object.assign({ [finish]: Infinity }, graph.start)
 
   // track paths
-  const trackedParents = { [finish]: null }
+  const trackedParents: {[key: string]: string | null } = { [finish]: null }
   for (let child in graph.start) {
     trackedParents[child] = 'start'
   }
