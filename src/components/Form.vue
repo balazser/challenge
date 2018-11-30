@@ -6,8 +6,8 @@ import { DateTime } from 'luxon'
 import { Mutation, State, Getter, Action } from './../store'
 import * as store from './../store'
 
-import { SearchType } from './SearchType';
-import cities from '../constants/cities';
+import { SearchType } from './SearchType'
+import cities from '../constants/cities'
 
 @Component
 export default class Form extends Vue {
@@ -27,9 +27,9 @@ export default class Form extends Vue {
     this.$emit("searching", {
       departure: this.departure,
       arrival: this.arrival,
-      searchType: this.searchType
+      searchType: this.searchType,
     })
-    e.preventDefault();
+    e.preventDefault()
   }
 
   get isBtnCheapestActive() {

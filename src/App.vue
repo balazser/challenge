@@ -1,18 +1,18 @@
 <script>
-import { sumBy } from 'lodash/fp';
+import { sumBy } from 'lodash/fp'
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { DateTime } from 'luxon'
-import Form from './components/Form.vue';
-import ResultList from './components/ResultList.vue';
+import Form from './components/Form.vue'
+import ResultList from './components/ResultList.vue'
 
 import { Mutation, State, Getter, Action } from './store'
 import * as store from './store'
 
-import { findCheapestPath, findFastestPath } from './services/api';
-import { SearchType } from './components/SearchType';
-import { applyDiscount } from './services/deal';
-import { currencySign } from './services/currencySign';
+import { findCheapestPath, findFastestPath } from './services/api'
+import { SearchType } from './components/SearchType'
+import { applyDiscount } from './services/deal'
+import { currencySign } from './services/currencySign'
 
 @Component
 export default class App extends Vue {

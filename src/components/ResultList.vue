@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 import { Mutation, State, Getter, Action } from './../store'
 import * as store from './../store'
 
-import { applyDiscount, hasDiscount } from '../services/deal';
+import { applyDiscount, hasDiscount } from '../services/deal'
 
 @Component
 export default class ResultList extends Vue {
